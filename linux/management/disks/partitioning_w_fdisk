@@ -1,0 +1,14 @@
+# partitioning disks is typical and often even required (windows)
+# it's usually just used to divide up the disk so you can use it ofr multiple types of storage/things
+
+# this just sends a bunch of commands to fdisk for you
+# I suggest you run fdisk yourself though, for learning
+(
+echo g # Create a new empty DOS partition table
+echo n # Add a new partition
+echo p # Primary partition
+echo 1 # Partition number
+echo   # First sector (Accept default: 1)
+echo   # Last sector (Accept default: varies)
+echo w # Write changes
+) | fdisk /dev/mapper/<NAME>

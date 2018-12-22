@@ -1,0 +1,12 @@
+# don't use /dev/sda and such naming convention
+# it can change any boot based on how fast the disks come up
+
+zpool create <name_of_pool> \
+    -f \
+    raidz2 \
+    /dev/disk/by-id/blah_A \
+    /dev/disk/by-id/blah_B \
+    /dev/disk/by-id/blah_C \
+    /dev/disk/by-id/blah_D \
+    /dev/disk/by-id/blah_E \
+    /dev/disk/by-id/blah_F \

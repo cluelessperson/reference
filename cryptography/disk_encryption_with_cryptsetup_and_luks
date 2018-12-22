@@ -1,0 +1,37 @@
+# this stuff can get complex very fast, so make sure you understand it conceptually
+
+# format disk for luks - this sets up the encrypted "container"
+cryptsetup luksFormat /dev/disk/by-id/blah_A
+#enter password
+
+
+# "unlock" / expose disk temporarily
+# on the backend, the machine will handle encrypting/decrypting data as it's used
+cryptsetup open /dev/disk/by-id/blah_A <NAME>
+#enter password
+
+
+# format the unlocked / exposed device with a filesystem
+# filesystems are just ways of organizing and storing files on disk for quick and easy lookup later
+mkfs.ext4 /dev/mapper/<NAME>
+
+
+# mount the disk to the system so we can add things to it
+mkdir /mnt/test
+mount -t ext4 /dev/mapper/<NAME> /mnt/test
+
+
+# unmount the disk
+umount -lf /mnt/test
+
+
+# stop doing the backend encryption stuff
+# basically forgets the password/key and it's not "unlocked" anymore.
+cryptsetup close <NAME>
+
+
+# There's tons of other things you can do
+cryptsetup --help
+    # use key files (instead of passwords)
+    # use multiple passwords
+    # make hidden encrypted disks
