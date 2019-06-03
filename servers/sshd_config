@@ -1,0 +1,50 @@
+# General Config
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+Port 22
+
+
+# commonly changed
+PermitRootLogin yes
+PasswordAuthentication no
+AllowAgentForwarding no
+AllowTcpForwarding no
+GatewayPorts no
+X11Forwarding no
+PrintMotd no
+Banner None
+
+# useful
+PrintLastLog yes
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+# general
+AuthorizedKeysFile .ssh/authorized_keys
+PubkeyAuthentication yes
+LoginGraceTime 30s
+
+# details
+StrictModes yes
+MaxAuthTries 1
+MaxSessions 1
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+#TCPKeepAlive yes
+#UseLogin no
+#UsePrivilegeSeparation sandbox
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+AcceptEnv LANG LC_*
